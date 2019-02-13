@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="books">
+        <item>Harry Potter</item>
+        <item>Lion King</item>
+        <item>El pais de uno</item>
+        <item>Android 101</item>
+        <item>Hacking 101</item>
+    </array>
+</resources>
