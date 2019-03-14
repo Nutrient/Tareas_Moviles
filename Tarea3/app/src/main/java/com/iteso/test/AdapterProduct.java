@@ -90,18 +90,23 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
                 Toast.makeText(context, mDataSet.get(position).toString(), Toast.LENGTH_LONG).show();
             }
         });
-        holder.mProductImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(context, mDataSet.get(position).toString(), Toast.LENGTH_LONG).show();
-            }
-        });
+
+
 
         holder.mProductPhone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + mDataSet.get(position).getPhone()));
                 context.startActivity(intent);
+            }
+        });
+
+        holder.mEventLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, ActivityProduct.class);
+                intent.putExtra("ITEM", mDataSet.get(position));
+                ((ActivityMain) context).startActivityForResult(intent, 1);
             }
         });
 

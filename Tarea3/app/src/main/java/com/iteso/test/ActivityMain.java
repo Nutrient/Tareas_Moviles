@@ -1,5 +1,6 @@
 package com.iteso.test;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -25,6 +26,13 @@ public class ActivityMain extends AppCompatActivity {
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
     private ViewPager mViewPager;
+
+    public static int RESULT_OK = 1;
+    public static int RESULT_CANCEL = 2;
+
+    FragmentTechnology fragmentTechnology;
+    FragmentElectronics fragmentElectronics;
+    FragmentHome fragmentHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,13 +95,21 @@ public class ActivityMain extends AppCompatActivity {
             // Return a PlaceholderFragment (defined as a static inner class below).
             switch (position) {
                 case 0:
-                    return new FragmentTechnology();
+                    if(fragmentTechnology == null)
+                        fragmentTechnology = new FragmentTechnology();
+                    return fragmentTechnology;
                 case 1:
-                    return new FragmentHome();
+                    if(fragmentHome == null)
+                        fragmentHome = new FragmentHome();
+                    return fragmentHome;
                 case 2:
-                    return new FragmentElectronics();
+                    if(fragmentElectronics == null)
+                        fragmentElectronics = new FragmentElectronics();
+                    return fragmentElectronics;
                 default:
-                    return new FragmentTechnology();
+                    if(fragmentTechnology == null)
+                        fragmentTechnology = new FragmentTechnology();
+                    return fragmentTechnology;
             }
         }
 
@@ -111,6 +127,17 @@ public class ActivityMain extends AppCompatActivity {
                 case 2: return "Electronics";
             }
             return null;
+        }
+
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode== 1){
+            if(resultCode == ActivityMain.RESULT_OK){
+                fragmentTechnology.onActivityResult(requestCode, resultCode, data);
+            }
         }
     }
 }
