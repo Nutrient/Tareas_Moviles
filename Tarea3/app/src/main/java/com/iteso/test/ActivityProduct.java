@@ -8,12 +8,14 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.iteso.test.beans.ItemProduct;
 
 public class ActivityProduct extends Activity {
     EditText title, location, store, phone;
     ItemProduct itemProduct;
+    ImageView imageView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -24,10 +26,20 @@ public class ActivityProduct extends Activity {
         store = findViewById(R.id.edit_store);
         location = findViewById(R.id.edit_location);
         phone = findViewById(R.id.edit_phone);
+        imageView = findViewById(R.id.activity_detail_image);
         title.setText(itemProduct.getTitle());
         store.setText(itemProduct.getStore());
         location.setText(itemProduct.getLocation());
         phone.setText(itemProduct.getPhone());
+
+        switch (itemProduct.getImage()) {
+            case 0:
+                imageView.setImageResource(R.drawable.alienware);
+                break;
+            case 1:
+                imageView.setImageResource(R.drawable.mac);
+                break;
+        }
     }
 
 
